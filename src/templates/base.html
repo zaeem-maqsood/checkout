@@ -1,0 +1,164 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    {% block meta %}
+    {% endblock meta %}
+    <meta name="google-site-verification" content="ig5bib7E2tO1Z99D2WRjlmqT5lIMyDYM7ddD-d8Gu4o" />
+
+    <!-- Favicon  -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <!--  Favicon -->
+
+    <title>{% block title %} Ilm Academy {% endblock title %}</title>
+    <!--  Style Sheets  -->
+    {% include 'head_css.html' %}
+
+    {% block style %}
+
+    {% endblock style %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+  </head>
+
+
+{% block fullpage_title %}
+
+{% endblock fullpage_title %}
+
+
+
+    <body class="stretched no-transition">
+
+
+        <!-- ========================= Begin Main Wrapper ============================ -->
+        <div id="wrapper" class="clearfix">
+
+            <!-- ======================= Begin Header ================================ -->
+            {% block header %}
+            
+            {% endblock header %}
+            <!-- ========================== End Header =============================== -->
+
+            <!-- ========================== Page Title =============================== -->
+
+            {% block page_title %}
+            {% endblock page_title %}
+
+            <!-- ========================== END Page Title =========================== -->
+
+            <!-- ==================== Begin Site Content ============================= -->
+            <section id="content">
+
+                {% block start_full_content %}
+
+                {% endblock start_full_content %}
+
+                <!-- =================== Begin Content Wrap ==========================  -->
+                <div class="content-wrap no-padding">
+
+                    {% block bg %}
+
+                    {% endblock bg %}
+
+                    <!-- ================== Begin Container  =========================  -->
+                    <div class="container clearfix">
+
+                        {% block content %}
+
+                        {% endblock content %}
+
+                    </div>
+                    <!-- ================== End Container  ===========================  -->
+
+                    {% block additional_content %}
+                    
+                    {% endblock additional_content %}
+
+                </div>
+                <!-- ===================== End Content Wrap ==========================  -->
+                {% block google_map %}
+            {% endblock google_map %}
+            </section>
+            <!-- ==================== End Site Content =============================== -->    
+
+
+            
+            <!-- ========================= Begin Footer ============================== -->
+            <footer id="footer" class="dark">
+
+                <div class="container center">
+
+
+                    {% block footer %}
+                    {% endblock footer %}
+
+                </div>
+
+                <!-- ====================== Copyrights =============================== -->
+                <div id="copyrights">
+
+                    <div class="container center clearfix">
+                        © Copyright Ilm Academy| All Rights Reserved
+                        {% block copywrite %}
+                        {% endblock copywrite %}
+
+                    </div>
+
+                </div>
+                <!-- ====================== Copyrights =============================== -->
+
+            </footer>
+            <!-- ========================= End Footer ============================== -->
+
+
+        </div>
+
+
+    <!-- Bootstrap core JavaScript  -->
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- JQUERY CORE -->
+    <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Custom Javascript -->
+    <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/functions.js' %}"></script>
+    
+    {% block javascript %}
+    {% endblock javascript %}
+
+
+<script>
+  
+
+</script>
+        
+
+    </body>
+</html>
+
+
+
+
+
+
+

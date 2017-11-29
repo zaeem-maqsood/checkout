@@ -1,0 +1,73 @@
+{% load staticfiles %}
+{% load i18n %}
+
+{% if messages %}
+
+<div class="row">
+    {% for message in messages %}
+    <div class='alert {% if message.level == 40 %}alert-danger{% else %} alert-success{% endif %} text-center alert-dismissible'>
+        <button type="button" style="position: inherit;" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p class="lead" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p><br/>
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+<header id="header" class="{% if transparent and slider %}transparent-header dark full-header{% else %}full-header{% endif %}" >
+
+<div id="header-wrap">
+
+    <div class="container clearfix">
+
+        {% block header %}
+        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+			<!-- Logo
+			============================================= -->
+			<div id="logo">
+				<a href="{{ registrar.get_absolute_url }}" class="standard-logo" data-dark-logo="{% static 'images/ilm_logo.png' %}"><img src="{% static 'images/ilm_logo.png' %}" alt="registrar Logo"></a>
+
+				<a href="{{ registrar.get_absolute_url }}" class="retina-logo" data-dark-logo="{% static 'images/ilm_logo.png' %}"><img src="{% static 'images/ilm_logo.png' %}" alt="registrar Logo"></a>
+			</div><!-- #logo end -->
+
+
+		<nav id="primary-menu" class="style-1">
+
+			<ul>
+
+				{% if not request.user.is_authenticated %}
+				<li><a href=""><div class="highlight2">Products</div></a></li>
+				{% endif %}
+
+				{% if request.user.is_superuser %}
+				<li><a href=""><div class="highlight2">Products</div></a></li>
+				<li><a href=""><div class="highlight2">Orders</div></a></li>
+				<li><a href=""><div class="highlight2">Settings</div></a></li>
+				{% endif %}
+
+			</ul>
+
+		</nav>
+        {% endblock header %}
+
+    </div>
+
+</div>
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
