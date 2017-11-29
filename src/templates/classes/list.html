@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block header %}
+    {% include "primary_nav.html" %}
+{% endblock header %}
+
+
+
+{% block content %}
+
+
+{% for class in classes %}
+<div class="row clearfix">
+	<div class="col-6 col-md-3 center" style="">
+		<img src="{{ class.image.url }}" style="width: 100%;height: auto;">
+	</div>
+
+	<div class="col-6 col-md-9 center" style="background-color: #F5F5F5;">
+		<div>
+			<div class="nobottomborder">
+				<br>
+				<h3 style="margin: 0 0 0 0;font-size: 1.5em;font-weight: 200;">{{ class.title }}</h3>
+				<span class="before-heading color">at {{ class.venue }}</span>
+				<br>
+			</div>
+
+			<p class="nobottommargin d-none d-sm-block" style="font-size: 0.9em;font-weight: 200;">{{ class.description }}</p>
+
+			<br>
+			<p class="d-none d-sm-block" style="font-size: 0.9em;font-weight: 200;">{{ class.location }}</p>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+{% endblock content %}
