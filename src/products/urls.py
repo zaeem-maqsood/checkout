@@ -1,10 +1,9 @@
 from django.conf.urls import url, include
 
-from .views import ProductsView
+from .views import ProductView
 
 urlpatterns = [
 
-	url(r'^$', ProductsView.as_view(), name='list'),
-    # url(r'^(?P<pk>\d+)/$', EventDetailView.as_view(), name='detail'),
+    url(r'^checkout/(?P<pk>\d+)/$', ProductView.as_view(), name='detail'),
 
 ]

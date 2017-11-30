@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from stdimage.models import StdImageField
 
 
@@ -17,3 +18,8 @@ class Classes(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+	def get_absolute_url(self):
+		view_name = "class:detail"
+		return reverse(view_name, kwargs={"pk": self.pk})

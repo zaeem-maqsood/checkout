@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import products.models
-import stdimage.models
 
 
 class Migration(migrations.Migration):
@@ -23,7 +22,6 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, null=True)),
                 ('sale_cost', models.DecimalField(blank=True, decimal_places=2, max_digits=6, null=True)),
                 ('cost', models.DecimalField(blank=True, decimal_places=2, max_digits=6, null=True)),
-                ('image', stdimage.models.StdImageField(blank=True, upload_to=products.models.download_media_location)),
             ],
         ),
     ]

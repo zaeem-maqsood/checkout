@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block header %}
+    {% include "primary_nav.html" %}
+{% endblock header %}
+
+
+{% block style %}
+<style type="text/css">
+.pricing-box.pricing-extended .pricing-desc {
+    float: left;
+    width: 50%;
+    padding: 25px;
+}
+
+.pricing-box.pricing-extended .pricing-action-area {
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid rgba(0,0,0,0.05);
+    background-color: #F9F9F9;
+    padding: 30px;
+    border-radius: 0 3px 3px 0;
+    text-align: center;
+}
+
+.pricing-price {
+    position: relative;
+    padding: 25px 0;
+    color: #333;
+    font-weight: 300;
+    font-size: 3em;
+    line-height: 1;
+}
+</style>
+{% endblock style %}
+
+
+
+{% block content %}
+
+
+<div class="row clearfix" style="padding-top: 40px;">
+    <div class="col-6 col-sm-4 col-md-4 col-lg-3 center" style="">
+        <img src="{{ class.image.url }}" style="width: 100%;height: auto;">
+    </div>
+
+    <div class="col-6 col-sm-8 col-md-8 col-lg-9" style="">
+        <div>
+            <div class="nobottomborder">
+                <br>
+                <h3 style="margin: 0 0 0 0;font-size: 1.5em;font-weight: 200;">{{ class.title }}</h3>
+                <span class="before-heading color d-none d-sm-block">at {{ class.venue }}</span>
+                <br>
+            </div>
+
+            <p class="nobottommargin d-none d-md-block" style="font-size: 0.9em;font-weight: 200;">{{ class.description }}</p>
+
+            <br class="d-none d-md-block">
+            <h1 class="d-none d-md-block" style="font-size: 0.9em;font-weight: 200;"><a href="http://maps.google.com/?q={{ class.location }}">Address: {{ class.location }}</a></h1>
+        </div>
+    </div>
+</div>
+
+
+{% for product in products %}
+<br>
+<div class="row" style="padding: 30px 20px 30px 20px;">
+    <div class="col-12 col-sm-12 col-md-7" style="background-color: #ecf3ff;padding: 20px;">
+        <h2 style="font-weight: 200;margin: 0 0 0 0;">{{ product.title }}</h2>
+        <p class="lead" style="margin: 0 0 0 0;font-size: 0.8em;">Taught by: {{ product.instructor }}</p>
+        <hr>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature1 }}</p>
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature2 }}</p>
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature3 }}</p>
+            </div>
+            <div class="col-12 col-sm-6">
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature4 }}</p>
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature5 }}</p>
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature6 }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-5 center" style="background-color: #d9f9f2;padding: 20px;">
+        {% if product.sale_cost %}
+            <h1 style="color:red;font-weight: 200;margin-bottom:5px;"><del style="color: black;font-size: 0.5em;">&dollar;{{ product.cost }}</del> &dollar;{{ product.sale_cost }}</h1>
+        {% else %}
+            <h1 style="font-weight: 200;margin-bottom:5px;">&dollar;{{ product.cost }}</h1>
+        {% endif %}
+
+        <p style="font-size: 0.8em;margin-bottom:15px;">{{ product.interval }}</p>
+        <br>
+        
+        <a href="{{ product.get_absolute_url }}" class="button button-large btn-block">{{ product.button_text }}</a>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock content %}
+
+
+
+{% block google_map %}
+<div class="row">
+    <div class="col-md-12 center">
+
+        <div id="google-map5" style="height: 500px;" class="gmap"></div>
+
+    </div>
+</div>
+{% endblock google_map %}
+
+
+
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/jquery.gmap.js' %}"></script>
+
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCKZSx6ahCzWBPWRvWT181pOBR5p7GPAvM&libraries=places&callback="></script>
+
+<script type="text/javascript">
+
+$('#google-map5').gMap({
+         address: "{{ class.location|safe }}",
+         maptype: 'ROADMAP',
+         zoom: 14,
+         markers: [
+            {
+                address: "{{ class.location|safe }}",
+                html: "{{ class.venue|safe }}"
+            },
+         ],
+         doubleclickzoom: false,
+         controls: {
+             panControl: true,
+             zoomControl: true,
+             mapTypeControl: false,
+             scaleControl: false,
+             streetViewControl: false,
+             overviewMapControl: false
+        }
+    });
+</script>
+{% endblock javascript %}
+
+
+
+
+
+
+
+
+
+
+
+
+

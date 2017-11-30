@@ -40,10 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'stdimage',
     'products',
     'classes',
+    'orders',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+STRIPE_SECRET_KEY = 'sk_test_4F6eOiaOTn35hSU2EdT5dNgW'
+STRIPE_PUBLIC_KEY = 'pk_test_UTsltdQjI0p1WDbvUpVh4lN9'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

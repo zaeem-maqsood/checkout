@@ -36,11 +36,12 @@
 			<ul>
 
 				{% if not request.user.is_authenticated %}
-				<li><a href=""><div class="highlight2">Products</div></a></li>
+				<li><a href=""><div class="highlight2">Classes</div></a></li>
+				<li><a href=""><div class="highlight2">My Payments</div></a></li>
 				{% endif %}
 
 				{% if request.user.is_superuser %}
-				<li><a href=""><div class="highlight2">Products</div></a></li>
+				<li><a href=""><div class="highlight2">Classes</div></a></li>
 				<li><a href=""><div class="highlight2">Orders</div></a></li>
 				<li><a href=""><div class="highlight2">Settings</div></a></li>
 				{% endif %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{% block header %}
+    {% include "primary_nav.html" %}
+{% endblock header %}
+
+
+
+{% block content %}
+<div class="row center">
+	<div class="col-md-12">
+		<h1 class="" style="font-size: 3em;font-weight: 200;">{{ product.classes }}</h1>
+	</div>
+</div>
+
+<div class="row" style="padding: 30px 20px 30px 20px;">
+    <div class="col-12 col-sm-12" style="background-color: #ecf3ff;padding: 20px;">
+        <h2 style="font-weight: 200;margin: 0 0 0 0;">{{ product.title }}</h2>
+        <p class="lead" style="margin: 0 0 0 0;font-size: 0.8em;">Taught by: {{ product.instructor }}</p>
+        <hr>
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature1 }}</p>
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature2 }}</p>
+                
+            </div>
+            <div class="col-12 col-sm-4">
+            	<p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature3 }}</p>
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature4 }}</p>
+                
+            </div>
+            <div class="col-12 col-sm-4">
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature5 }}</p>
+                <p style="font-weight: 200;margin-bottom:5px;"><i style="color: #2e8ecf;font-size: 0.8em;" class="fa fa-check-circle-o"></i>  {{ product.feature6 }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="padding-top: 40px;">
+	<div class="col-md-6" style="padding-top: 30px;">
+		<p class="lead">
+			<img style="display: block;margin-left: auto;margin-right: auto;" src="{% static 'images/ilm_logo.png' %}" width="200px">
+			<br>
+			{{ product.checkout_instructions|safe }}  
+		</p>
+	</div>
+	<div class="col-md-6">
+		<form method="post" class="uniForm">{% csrf_token %}
+		    {{ form|crispy }}
+		  	<div id="payment-form"><script
+	        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+	        data-key="{{ public_key }}"
+	        data-amount="{{ stripe_total }}"
+	        data-name="{{ product.title }}"
+	        data-description="Ilm Academy"
+	        data-image="{% static 'images/ilmlogo.png' %}"
+	        data-locale="auto"
+	        data-zip-code="true"
+	        data-billing-address="true"
+	        data-currency="cad"
+	        data-label="Pay ${{ total }} With Debit/Credit Card"
+	        >
+	        </script></div>
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
